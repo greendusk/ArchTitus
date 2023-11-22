@@ -67,7 +67,10 @@ lutris
 lzop
 m4
 make
+micro
+mpv
 neofetch
+nfs-utils
 ntfs-3g
 ntp
 openbsd-netcat
@@ -89,6 +92,7 @@ python-pip
 qemu
 snap-pac
 snapper
+sshfs
 steam
 swtpm
 synergy
