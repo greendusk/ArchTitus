@@ -1,6 +1,6 @@
-# Resurrecting Project 
+# Resurrecting Project
 
-I'm changing the scope of the project to only do minimal installs and no longer offer the options for the install script. As the official arch install script has become better this one is no longer needed. However, I still want a script that installs my two flavors of arch. 
+I'm changing the scope of the project to only do minimal installs and no longer offer the options for the install script. As the official arch install script has become better this one is no longer needed. However, I still want a script that installs my two flavors of arch.
 
 - DWM + Xorg
 - Hyprland + Wayland
@@ -35,7 +35,7 @@ From initial Prompt type the following commands:
 
 ```
 pacman -Sy git
-git clone https://github.com/ChrisTitusTech/ArchTitus
+git clone https://github.com/greendusk/ArchTitus
 cd ArchTitus
 ./archtitus.sh
 ```
@@ -49,7 +49,7 @@ __[Arch Linux RickEllis Installation Guide](https://github.com/rickellis/Arch-Li
 
 __[Arch Linux Wiki Installation Guide](https://wiki.archlinux.org/title/Installation_guide)__
 
-The main script will generate .log files for every script that is run as part of the installation process. These log files contain the terminal output so you can review any warnings or errors that occurred during installation and aid in troubleshooting. 
+The main script will generate .log files for every script that is run as part of the installation process. These log files contain the terminal output so you can review any warnings or errors that occurred during installation and aid in troubleshooting.
 ### No Wifi
 
 You can check if the WiFi is blocked by running `rfkill list`.
@@ -61,7 +61,7 @@ After unblocking the WiFi, you can connect to it. Go through these 5 steps:
 
 #2: Run `device list`, and find your device name.
 
-#3: Run `station [device name] scan`
+#3: Run `station [device name] scan` in most cases wlan0
 
 #4: Run `station [device name] get-networks`
 
