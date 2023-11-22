@@ -2,15 +2,15 @@
 #github-action genshdoc
 #
 # @file Setup
-# @brief Configures installed system, installs base packages, and creates user. 
+# @brief Configures installed system, installs base packages, and creates user.
 echo -ne "
 -------------------------------------------------------------------------
-   █████╗ ██████╗  ██████╗██╗  ██╗████████╗██╗████████╗██╗   ██╗███████╗
-  ██╔══██╗██╔══██╗██╔════╝██║  ██║╚══██╔══╝██║╚══██╔══╝██║   ██║██╔════╝
-  ███████║██████╔╝██║     ███████║   ██║   ██║   ██║   ██║   ██║███████╗
-  ██╔══██║██╔══██╗██║     ██╔══██║   ██║   ██║   ██║   ██║   ██║╚════██║
-  ██║  ██║██║  ██║╚██████╗██║  ██║   ██║   ██║   ██║   ╚██████╔╝███████║
-  ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝   ╚═╝    ╚═════╝ ╚══════╝
+ ██████╗ ██████╗ ███████╗███████╗███╗   ██╗ █████╗ ██████╗  ██████╗██╗  ██╗
+██╔════╝ ██╔══██╗██╔════╝██╔════╝████╗  ██║██╔══██╗██╔══██╗██╔════╝██║  ██║
+██║  ███╗██████╔╝█████╗  █████╗  ██╔██╗ ██║███████║██████╔╝██║     ███████║
+██║   ██║██╔══██╗██╔══╝  ██╔══╝  ██║╚██╗██║██╔══██║██╔══██╗██║     ██╔══██║
+╚██████╔╝██║  ██║███████╗███████╗██║ ╚████║██║  ██║██║  ██║╚██████╗██║  ██║
+ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
 -------------------------------------------------------------------------
                     Automated Arch Linux Installer
                         SCRIPTHOME: ArchTitus
@@ -19,14 +19,14 @@ echo -ne "
 source $HOME/ArchTitus/configs/setup.conf
 echo -ne "
 -------------------------------------------------------------------------
-                    Network Setup 
+                    Network Setup
 -------------------------------------------------------------------------
 "
 pacman -S --noconfirm --needed networkmanager dhclient
 systemctl enable --now NetworkManager
 echo -ne "
 -------------------------------------------------------------------------
-                    Setting up mirrors for optimal download 
+                    Setting up mirrors for optimal download
 -------------------------------------------------------------------------
 "
 pacman -S --noconfirm --needed pacman-contrib curl
@@ -48,7 +48,7 @@ sed -i "s/COMPRESSXZ=(xz -c -z -)/COMPRESSXZ=(xz -c -T $nc -z -)/g" /etc/makepkg
 fi
 echo -ne "
 -------------------------------------------------------------------------
-                    Setup Language to US and set locale  
+                    Setup Language to US and set locale
 -------------------------------------------------------------------------
 "
 sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
@@ -73,7 +73,7 @@ pacman -Sy --noconfirm --needed
 
 echo -ne "
 -------------------------------------------------------------------------
-                    Installing Base System  
+                    Installing Base System
 -------------------------------------------------------------------------
 "
 # sed $INSTALL_TYPE is using install type to check for MINIMAL installation, if it's true, stop
@@ -127,16 +127,16 @@ fi
 if ! source $HOME/ArchTitus/configs/setup.conf; then
 	# Loop through user input until the user gives a valid username
 	while true
-	do 
+	do
 		read -p "Please enter username:" username
 		# username regex per response here https://unix.stackexchange.com/questions/157426/what-is-the-regex-to-validate-linux-users
 		# lowercase the username to test regex
 		if [[ "${username,,}" =~ ^[a-z_]([a-z0-9_-]{0,31}|[a-z0-9_-]{0,30}\$)$ ]]
-		then 
+		then
 			break
-		fi 
+		fi
 		echo "Incorrect username."
-	done 
+	done
 # convert name to lowercase before saving to setup.conf
 echo "username=${username,,}" >> ${HOME}/ArchTitus/configs/setup.conf
 
@@ -144,22 +144,22 @@ echo "username=${username,,}" >> ${HOME}/ArchTitus/configs/setup.conf
     read -p "Please enter password:" password
 echo "password=${password,,}" >> ${HOME}/ArchTitus/configs/setup.conf
 
-    # Loop through user input until the user gives a valid hostname, but allow the user to force save 
+    # Loop through user input until the user gives a valid hostname, but allow the user to force save
 	while true
-	do 
+	do
 		read -p "Please name your machine:" name_of_machine
 		# hostname regex (!!couldn't find spec for computer name!!)
 		if [[ "${name_of_machine,,}" =~ ^[a-z][a-z0-9_.-]{0,62}[a-z0-9]$ ]]
-		then 
-			break 
-		fi 
+		then
+			break
+		fi
 		# if validation fails allow the user to force saving of the hostname
-		read -p "Hostname doesn't seem correct. Do you still want to save it? (y/n)" force 
+		read -p "Hostname doesn't seem correct. Do you still want to save it? (y/n)" force
 		if [[ "${force,,}" = "y" ]]
-		then 
-			break 
-		fi 
-	done 
+		then
+			break
+		fi
+	done
 
     echo "NAME_OF_MACHINE=${name_of_machine,,}" >> ${HOME}/ArchTitus/configs/setup.conf
 fi
@@ -170,7 +170,7 @@ echo -ne "
 "
 if [ $(whoami) = "root"  ]; then
     groupadd libvirt
-    useradd -m -G wheel,libvirt -s /bin/bash $USERNAME 
+    useradd -m -G wheel,libvirt -s /bin/bash $USERNAME
     echo "$USERNAME created, home directory created, added to wheel and libvirt group, default shell set to /bin/bash"
 
 # use chpasswd to enter $USERNAME:$password
